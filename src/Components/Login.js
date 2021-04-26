@@ -1,5 +1,4 @@
-import styled from 'styled-Components';
-
+import styled from 'styled-components';
 import React from 'react'
 
 const Login = (props) => {

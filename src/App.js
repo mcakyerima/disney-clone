@@ -1,6 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router , Switch, Route} from 'react-router-dom';
-import { Login } from './Components/Login';
+import Login from './Components/Login';
+import styled from 'styled-components';
 
 function App() {
   return (
