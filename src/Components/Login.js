@@ -5,10 +5,10 @@ const Login = (props) => {
     return (
         <Container>
             <Content>
-            <CTA>
-                <CTALogo src='/images/disney-logo-a.png' alt='logo'/>
-            </CTA>
-                
+                <CTA>
+                    <CTALogo src='/images/cta1.svg' alt='logo' />
+                </CTA>
+
                 <Background />
             </Content>
         </Container>
@@ -48,8 +48,20 @@ const Background = styled.div`
     right:0;
     left:0;`
 const CTA = styled.div`
+    border: 1px solid green;
+    margin-bottom: 2vw;
+    max-width: 650px;
+    display: flex;
+    flex-wrap:wrap;
+
     `
 const CTALogo = styled.img`
+    min-width: 12px;
+    max-width: 600px;
+    min-height: 1px;
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
     `
 
 export default Login
