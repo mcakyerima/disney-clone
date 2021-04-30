@@ -6,7 +6,13 @@ const Header = (props) => {
             <NavLogo>
                 <img src="/images/main-logo.svg" />
             </NavLogo> 
-            <NavLink>LOGIN</NavLink>
+            <NavLink>
+                <a href="/home">
+                    <img src="/images/home-icon.svg" alt="home"/>
+                    <span>HOME</span>
+                </a>
+               
+            </NavLink>
         </Nav>
     )
 };
@@ -44,8 +50,8 @@ const NavLogo = styled.a`
         transform: scale(1.2);
     }
     `
-const NavLink = styled.a`
-    border: solid 3px #f9f9f9;
+const NavLink = styled.div`
+    //border: solid 3px #f9f9f9;
     font-weight: 400;
     font-size: 20px;
     margin:0px;
@@ -62,12 +68,63 @@ const NavLink = styled.a`
     position: relative;
     justify-content: flex-end;
     align-items: center;
-    border-radius: 6px;
+    //border-radius: 6px;
+    a {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: center;
+        padding:0 .23px;
+        
+        img {
+            height:20px;
+            margin-right: 5px;
+            min-width: 20px;
+            width: 20px;
+            z-index: auto;
+        }
+
+        span {
+            font-size: 15px;
+            letter-spacing:1.4px;
+            line-height: 1.05;
+            color: rgb(249, 249, 249);
+            padding:2px 0px;
+            white-space: nowrap;
+            position: relative;
+        }
+        &:before{
+            content: " ";
+            background-color: rgba(249, 249, 249);
+            border-radius: 0px 0px 4px 4px;
+            height: 2px;
+            width: auto;
+            display: block;
+            left:0px;
+            opacity: 0;
+            bottom: -5px;
+            position: absolute;
+            transform-origin: left center;
+            transform: scaleX(0);
+            transition: all 250ms cubic-cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            visibility: hidden;
+        }
+        &:hover{
+            span:before{
+            transform: scaleX(1);
+            visibility: visible;
+            opacity: 1 important;
+            width:auto;
+            }
+        }
+    }
     
-    @media
+    @media (max-width: 768px){
+        display: none
+    }
     &:hover{
         cursor:pointer;
-        background-color:#0483ee;
+        //background-color:#0483ee;
     }
     `
     export default Header;
