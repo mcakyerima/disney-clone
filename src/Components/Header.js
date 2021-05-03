@@ -5,14 +5,40 @@ const Header = (props) => {
         <Nav>
             <NavLogo>
                 <img src="/images/main-logo.svg" />
-            </NavLogo> 
+            </NavLogo>
             <NavLink>
+                
                 <a href="/home">
-                    <img src="/images/home-icon.svg" alt="home"/>
+                    <img src="/images/home-icon.svg" alt="home" />
                     <span>HOME</span>
                 </a>
-               
+                
+                <a href="">
+                    <img src="images/search-icon.svg" alt="search"/>
+                    <span>SEARCH</span>
+                </a>
+
+                <a href="">
+                    <img src="images/watchlist-icon.svg" alt="watchlist"/>
+                    <span>WATCHLIST</span>
+                </a>
+
+                <a href="">
+                    <img src="images/original-icon.svg" alt="originals"/>
+                    <span>ORIGINALS</span>
+                </a>
+                
+                <a href="">
+                    <img src="images/series-icon.svg" alt="series"/>
+                    <span>SERIES</span>
+                </a>
+                <a href="">
+                    <img src="images/movie-icon.svg" alt="movies"/>
+                    <span>MOVIES</span>
+                </a>
+
             </NavLink>
+            <Login>LOGIN</Login>
         </Nav>
     )
 };
@@ -35,26 +61,30 @@ const Nav = styled.nav`
     z-index: 3;
     `
 const NavLogo = styled.a`
-    display: inline-block;
+    display: block;
     padding: 0;
     max-height: 100px;
     margin-top: 4px;
+    margin-right:auto;
     width: 90px;
     img{
         display: block;
         height:100px;
         width: 100%;
+        margin-right:20px;
+        margin-right: 50px;
+        transition: all .5s linear 1s;
     }
     &:hover{
         cursor: pointer;
-        transform: scale(1.2);
+        transform: scaleX(1.2);
+        visibility: visible;
     }
     `
 const NavLink = styled.div`
     //border: solid 3px #f9f9f9;
     font-weight: 400;
     font-size: 20px;
-    margin:0px;
     margin-right: auto;
     margin-left:24px;
     letter-spacing: 4px;
@@ -74,11 +104,12 @@ const NavLink = styled.div`
         flex-flow: row nowrap;
         align-items: center;
         justify-content: center;
-        padding:0 .23px;
+        padding:0 .40px;
         
         img {
             height:20px;
             margin-right: 5px;
+            margin-left: 20px;
             min-width: 20px;
             width: 20px;
             z-index: auto;
@@ -115,6 +146,7 @@ const NavLink = styled.div`
                 transform: scale(1);
                 visibility: visible;
                 opacity: 1;
+                cursor: context-menu;
 
             }
         }
@@ -126,5 +158,22 @@ const NavLink = styled.div`
         cursor: hand;
         //background-color:#0483ee;
     }
+    }
+`
+const Login = styled.a`
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 8px 15px;
+    letter-spacing: 1.4px;
+    border: solid 1px #f9f9f9;
+    border-radius: 4px;
+    transition: all 0.2s ease 0s;
+    
+    &:hover{
+        background-color: #f9f9f9;
+        color:#000;
+        border: transparent;
+    }
+
+    font-size: 20px;
     `
 export default Header;
