@@ -1,6 +1,16 @@
 import styled from 'styled-components';
+import { auth, provider  } from '../firebase'
 
 const Header = (props) => {
+    const hadleAuth = () => {
+        // sign in with pop up allow you to sign in on click of the login button and then sign in with google
+        auth.signInWithPopup(provider)
+        //this returns a promise because it waits for you to make a login
+        .then((result) => {
+            console.log(result)
+        .catch((error) => alert(error))
+        }) 
+    }
     return (
         <Nav>
             <NavLogo>
