@@ -2,14 +2,14 @@ import styled from 'styled-components';
 import { auth, provider  } from '../firebase'
 
 const Header = (props) => {
-    const hadleAuth = () => {
+    const handleAuth = () => {
         // sign in with pop up allow you to sign in on click of the login button and then sign in with google
         auth.signInWithPopup(provider)
         //this returns a promise because it waits for you to make a login
         .then((result) => {
-            console.log(result)
-        .catch((error) => alert(error))
-        }) 
+            const feedback = result
+            console.log(result.map((name)=> name.user));
+        }).catch((error) => alert(error))
     }
     return (
         <Nav>
@@ -48,7 +48,7 @@ const Header = (props) => {
                 </a>
 
             </NavLink>
-            <Login>LOGIN</Login>
+            <Login onClick={handleAuth}>LOGIN</Login>
         </Nav>
     )
 };
@@ -179,6 +179,7 @@ const Login = styled.a`
     transition: all 0.2s ease 0s;
     
     &:hover{
+        cursor: pointer;
         background-color: #f9f9f9;
         color:#000;
         border: transparent;
