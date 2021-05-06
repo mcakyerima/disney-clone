@@ -7,8 +7,12 @@ const Header = (props) => {
         auth.signInWithPopup(provider)
         //this returns a promise because it waits for you to make a login
         .then((result) => {
-            const feedback = result
-            console.log(result.map((name)=> name.user));
+            const newUser = {
+                name : result.user.displayName,
+                image : result.user.photoURL,
+                email : result.user.email
+            };
+            console.log(newUser)
         }).catch((error) => alert(error))
     }
     return (
