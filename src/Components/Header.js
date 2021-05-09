@@ -1,19 +1,36 @@
 import styled from 'styled-components';
+//dipatch will let us dispatch action to our store, and selector will let us select action from our store
+import { useDispatch , useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { selectUserName, selectUserPhoto, selectUserEmail, setUserLoginDetails } from '../features/user/userSlice';
 import { auth, provider  } from '../firebase'
 
 const Header = (props) => {
+    //saving our dispatch to a variable for easy call
+    const dispatch = useDispatch();
+    //saving useHistory to a variable
+    const history = useHistory();
+    //fetching userName and userPhoto state from our store using useSelector and saving to a variable;
+    const userName = useSelector(selectUserName);
+    const userPhoto = useSelector(selectUserPhoto);
+
     const handleAuth = () => {
         // sign in with pop up allow you to sign in on click of the login button and then sign in with google
         auth.signInWithPopup(provider)
         //this returns a promise because it waits for you to make a login
         .then((result) => {
-            const newUser = {
-                name : result.user.displayName,
-                image : result.user.photoURL,
-                email : result.user.email
-            };
-            console.log(newUser)
+            setUser(result.user)
         }).catch((error) => alert(error))
+    }
+    //the setuser func takes result.user which has all userinfo object and dispatches it to the setuserLoginDetails
+    const setUser = (user) => {
+        dispatch(
+            setUserLoginDetails({
+                name: user.displayName,
+                email: user.displayName,
+                photo: user.photoURL
+            })
+        );
     }
     return (
         <Nav>

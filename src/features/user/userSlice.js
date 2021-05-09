@@ -30,7 +30,7 @@ const userSlice = createSlice({
 
 //not we need to export all the variable to be used our top lavel app
 export const { setUserLoginDetails, setSignOutState } = userSlice.actions;
-
+ 
 //now we export a function to be called by any of our files or conponents to access all the variables in our reducer...we just call the  function.
 
 export const selectUserName = (state) => state.user.name;
