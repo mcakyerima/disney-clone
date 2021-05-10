@@ -36,3 +36,7 @@ export const { setUserLoginDetails, setSignOutState } = userSlice.actions;
 export const selectUserName = (state) => state.user.name;
 export const selectUserEmail = (state) => state.user.email;
 export const selectUserPhoto = (state) => state.user.photo;
+
+
+//exporting our userSlice as a reducer to be added to our store.js reducer.
+export default userSlice.reducer;

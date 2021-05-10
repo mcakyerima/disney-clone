@@ -2,7 +2,7 @@ import styled from 'styled-components';
 //dipatch will let us dispatch action to our store, and selector will let us select action from our store
 import { useDispatch , useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { selectUserName, selectUserPhoto, selectUserEmail, setUserLoginDetails } from '../features/user/userSlice';
+import { selectUserName, selectUserPhoto, selectUserEmail, setUserLoginDetails, setSignOutState } from '../features/user/userSlice';
 import { auth, provider  } from '../firebase'
 
 const Header = (props) => {
@@ -13,6 +13,7 @@ const Header = (props) => {
     //fetching userName and userPhoto state from our store using useSelector and saving to a variable;
     const userName = useSelector(selectUserName);
     const userPhoto = useSelector(selectUserPhoto);
+    
 
     const handleAuth = () => {
         // sign in with pop up allow you to sign in on click of the login button and then sign in with google
@@ -37,39 +38,52 @@ const Header = (props) => {
             <NavLogo>
                 <img src="/images/main-logo.svg" />
             </NavLogo>
-            <NavLink>
+            {/* when the user logs in? display the users image and the navbar contents. else just display the login button to the user */}
+            {
+                  !userName? 
+                  (<Login onClick={handleAuth}>LOGIN</Login>)
+                  :(
+                    <>
+                    <NavLink>
                 
-                <a href="/home">
-                    <img src="/images/home-icon.svg" alt="home" />
-                    <span>HOME</span>
-                </a>
+                    <a href="/home">
+                        <img src="/images/home-icon.svg" alt="home" />
+                        <span>HOME</span>
+                    </a>
+                    
+                    <a href="">
+                        <img src="images/search-icon.svg" alt="search"/>
+                        <span>SEARCH</span>
+                    </a>
+
+                    <a href="">
+                        <img src="images/watchlist-icon.svg" alt="watchlist"/>
+                        <span>WATCHLIST</span>
+                    </a>
+
+                    <a href="">
+                          <img src="images/original-icon.svg" alt="originals"/>
+                        <span>ORIGINALS</span>
+                    </a>
+                    
+                    <a href="">
+                        <img src="images/series-icon.svg" alt="series"/>
+                        <span>SERIES</span>
+                    </a>
+                    <a href="">
+                        <img src="images/movie-icon.svg" alt="movies"/>
+                        <span>MOVIES</span>
+                    </a>
+                    
+                    
+                </NavLink>
+                <Profile src={userPhoto}/>
+                   
+                  </> 
                 
-                <a href="">
-                    <img src="images/search-icon.svg" alt="search"/>
-                    <span>SEARCH</span>
-                </a>
-
-                <a href="">
-                    <img src="images/watchlist-icon.svg" alt="watchlist"/>
-                    <span>WATCHLIST</span>
-                </a>
-
-                <a href="">
-                    <img src="images/original-icon.svg" alt="originals"/>
-                    <span>ORIGINALS</span>
-                </a>
-                
-                <a href="">
-                    <img src="images/series-icon.svg" alt="series"/>
-                    <span>SERIES</span>
-                </a>
-                <a href="">
-                    <img src="images/movie-icon.svg" alt="movies"/>
-                    <span>MOVIES</span>
-                </a>
-
-            </NavLink>
-            <Login onClick={handleAuth}>LOGIN</Login>
+                  )}
+                     
+            
         </Nav>
     )
 };
@@ -208,4 +222,12 @@ const Login = styled.a`
 
     font-size: 20px;
     `
+const Profile = styled.img`
+    height: 100%;
+    padding:10px;
+    border-radius: 50%;
+    &:hover{
+        cursor: pointer;
+        border: solid red 2px;
+    }`
 export default Header;
