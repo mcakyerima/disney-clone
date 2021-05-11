@@ -38,7 +38,7 @@ const Header = (props) => {
             <NavLogo>
                 <img src="/images/main-logo.svg" />
             </NavLogo>
-            {/* when the user logs in? display the users image and the navbar contents. else just display the login button to the user */}
+            {/* lets do some conditional rendering here , when the user logs in? display the users image and the navbar contents. else just display the login button to the user */}
             {
                   !userName? 
                   (<Login onClick={handleAuth}>LOGIN</Login>)
@@ -82,7 +82,7 @@ const Header = (props) => {
                   </> 
                 
                   )}
-                     
+                      
             
         </Nav>
     )
