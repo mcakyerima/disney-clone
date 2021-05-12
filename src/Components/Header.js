@@ -1,9 +1,11 @@
+import { useEffect } from 'react';
 import styled from 'styled-components';
 //dipatch will let us dispatch action to our store, and selector will let us select action from our store
 import { useDispatch , useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { selectUserName, selectUserPhoto, selectUserEmail, setUserLoginDetails, setSignOutState } from '../features/user/userSlice';
-import { auth, provider  } from '../firebase'
+import { auth, provider  } from '../firebase';
+
 
 const Header = (props) => {
     //saving our dispatch to a variable for easy call
@@ -14,15 +16,36 @@ const Header = (props) => {
     const userName = useSelector(selectUserName);
     const userPhoto = useSelector(selectUserPhoto);
     
+    //lets create a react hook to look for user if it exist, then take the user to Home page directrly..ortherwise, show the login page!
+    useEffect(()=>{
+        //check asyncronously if user state Changes
+        auth.onAuthStateChanged(async (user) => {
+            if(user) {
+                setUser(user);
+                history.push('/home');
+            }
+        })
+    } ,[userName]);
+    
 
     const handleAuth = () => {
+        if(!userName){
         // sign in with pop up allow you to sign in on click of the login button and then sign in with google
         auth.signInWithPopup(provider)
         //this returns a promise because it waits for you to make a login
         .then((result) => {
             setUser(result.user)
         }).catch((error) => alert(error))
+    }else if(userName){
+        auth.signOut()
+        .then(()=>{
+        //call our dispatcher to setSignoutState to null
+            dispatch(setSignOutState());
+            //go back to Login page history
+            history.push('/');
+        }).catch((error)=> alert(error))
     }
+    };
     //the setuser func takes result.user which has all userinfo object and dispatches it to the setuserLoginDetails
     const setUser = (user) => {
         dispatch(
@@ -77,7 +100,13 @@ const Header = (props) => {
                     
                     
                 </NavLink>
-                <Profile src={userPhoto}/>
+                
+                <Dropdown>
+                    <Profile src={userPhoto}/>
+                    <Logout>
+                        <span onClick={handleAuth}>Logout</span>
+                    </Logout>
+                </Dropdown>
                    
                   </> 
                 
@@ -223,11 +252,45 @@ const Login = styled.a`
     font-size: 20px;
     `
 const Profile = styled.img`
-    height: 100%;
-    padding:10px;
+    padding:5px;
     border-radius: 50%;
+    `
+const Logout = styled.div`
+position: absolute;
+right:0px;
+background-color: rgba(19,19,19);
+border: 1px solid rgba(151, 151, 151, 0.34);
+border-radius: 5px;
+padding: 10px;
+font-size: 15px;
+top: 50px;
+box-shadow:rgba(0 0 0 / 50%) 0px 0px 18px 8px;
+letter-spacing:3px;
+width: 100px;
+opacity: 0;
+`;
+
+const Dropdown = styled.div`
+    position: relative;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    
+    ${Profile} {
+        height: 100%;
+        width:100%;
+    }
     &:hover{
-        cursor: pointer;
-        border: solid red 2px;
-    }`
+        ${Logout}{
+            opacity: 1;
+            cursor: pointer;
+            transition-duration: 1s;
+        }
+    }
+
+
+`;
+
 export default Header;
