@@ -1,13 +1,66 @@
 import React from 'react';
 import styled from 'styled-components';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Slider from 'react-slick';
 
 const ImageSlider = (props) => {
+    //set the slider settings for the slider component
+    let settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScrool: 1,
+        swipeToSlide: true,
+        autoplay: true,
+    };
     return (
-        <div>
-            <h3>image slider</h3>
-        </div>
-    )
+        
+            <Carousel {...settings}>
+                <div>
+                    <h3>i am one</h3>
+                </div>
+                <div>
+                    <h3> i am the second dude</h3>
+                </div>
+                <div>
+                    <h1>3</h1>
+                    {/* <img src="/images/bg.png" style={{height: 500, width:2024}}/> */}
+                </div>
+                <div>
+                    <h3>image slider</h3>
+                </div>
+           </Carousel>
+       )
 };
 
+const Carousel = styled(Slider)`
+    margin-top: 20px;
+    & > button{
+        opacity: 0;
+        height: 100%;
+        width: 5vw;
+        z-index:1;
+    }
+    &:hover{
+        button{
+            opacity: 1;
+            transition: opacity 0.5s ease 0s;
+            }
+    }
+    ul li button {
+        &:before{
+            font-size:10px;
+            color: rgb(150, 159, 171)
+        }
+    }
+    li.slick-active button:before {
+        color: white;
+    }
+    .slick-list {
+        overflow: initial;
+    }
+    `
 export default ImageSlider;
 
