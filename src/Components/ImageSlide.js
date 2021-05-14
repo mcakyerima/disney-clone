@@ -18,19 +18,33 @@ const ImageSlider = (props) => {
     return (
         
             <Carousel {...settings}>
-                <div>
-                    <h3>i am one</h3>
-                </div>
-                <div>
-                    <h3> i am the second dude</h3>
-                </div>
-                <div>
-                    <h1>3</h1>
-                    {/* <img src="/images/bg.png" style={{height: 500, width:2024}}/> */}
-                </div>
-                <div>
-                    <h3>image slider</h3>
-                </div>
+               <wrap>
+                   <a>
+                       <img src="images/slider-badging.jpg"/>
+                   </a>
+               </wrap>
+               <wrap>
+                   <a>
+                       <img src="images/slider-badging.jpg"/>
+                   </a>
+               </wrap><wrap>
+                   <a>
+                       <img src="images/slider-badging.jpg"/>
+                   </a>
+               </wrap><wrap>
+                   <a>
+                       <img src="images/slider-badging.jpg"/>
+                   </a>
+               </wrap><wrap>
+                   <a>
+                       <img src="images/slider-badging.jpg"/>
+                   </a>
+               </wrap><wrap>
+                   <a>
+                       <img src="images/slider-badging.jpg"/>
+                   </a>
+               </wrap>
+
            </Carousel>
        )
 };
@@ -52,7 +66,7 @@ const Carousel = styled(Slider)`
     ul li button {
         &:before{
             font-size:10px;
-            color: rgb(150, 159, 171)
+            color: rgb(150, 159, 171);
         }
     }
     li.slick-active button:before {
@@ -60,6 +74,12 @@ const Carousel = styled(Slider)`
     }
     .slick-list {
         overflow: initial;
+    }
+    .slick-prev {
+        left: -75;
+    }
+    .slick-next {
+        right:-75;
     }
     `
 export default ImageSlider;
