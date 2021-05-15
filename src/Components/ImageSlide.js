@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
+import Views from './Views';
 
 const ImageSlider = (props) => {
     //set the slider settings for the slider component
@@ -16,37 +17,33 @@ const ImageSlider = (props) => {
         autoplay: true,
     };
     return (
-        
-            <Carousel {...settings}>
-               <wrap>
-                   <a>
-                       <img src="images/slider-badging.jpg"/>
-                   </a>
-               </wrap>
-               <wrap>
-                   <a>
-                       <img src="images/slider-badging.jpg"/>
-                   </a>
-               </wrap><wrap>
-                   <a>
-                       <img src="images/slider-badging.jpg"/>
-                   </a>
-               </wrap><wrap>
-                   <a>
-                       <img src="images/slider-badging.jpg"/>
-                   </a>
-               </wrap><wrap>
-                   <a>
-                       <img src="images/slider-badging.jpg"/>
-                   </a>
-               </wrap><wrap>
-                   <a>
-                       <img src="images/slider-badging.jpg"/>
-                   </a>
-               </wrap>
 
-           </Carousel>
-       )
+        <Carousel {...settings}>
+            <Wrap>
+                <a>
+                    <img src="images/slider-scale.jpg" />
+                </a>
+            </Wrap>
+            <Wrap>
+                <a>
+                    <img src="images/slider-badag.jpg" />
+                </a>
+            </Wrap>
+            <Wrap>
+                <a>
+                    <img src="images/slider-scales.jpg" />
+                </a>
+            </Wrap>
+            <Wrap>
+                <a>
+                    <img src="images/slider-badging.jpg" />
+                </a>
+            </Wrap>
+
+
+        </Carousel>
+               
+    )
 };
 
 const Carousel = styled(Slider)`
@@ -63,9 +60,9 @@ const Carousel = styled(Slider)`
             transition: opacity 0.5s ease 0s;
             }
     }
-    ul li button {
+    ul > li > button {
         &:before{
-            font-size:10px;
+            font-size:12px;
             color: rgb(150, 159, 171);
         }
     }
@@ -81,6 +78,30 @@ const Carousel = styled(Slider)`
     .slick-next {
         right:-75;
     }
-    `
+`
+const Wrap = styled.div`
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    a {
+        border-radius:10px;
+        display: block;
+        box-shadow: rgb(0 0 0/ 69% ) 0px 26px 30px -18px, rgba(0 0 0 / 73%) 0px 15px 10px -10px;
+        padding: 20px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
+    &:hover{
+        padding: 0;
+        border: 4px solid rgba(249, 248, 258, 0.8);
+        transition-duration: 300ms;
+    }
+`
 export default ImageSlider;
+
 
