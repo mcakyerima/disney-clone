@@ -57,7 +57,7 @@ const Carousel = styled(Slider)`
     &:hover{
         button{
             opacity: 1;
-            transition: opacity 0.5s ease 0s;
+            transition: opacity 0.5s ease-in;
             }
     }
     ul > li > button {
@@ -97,8 +97,8 @@ const Wrap = styled.div`
         height: 100%;
     }
     &:hover{
-        padding: 0;
-        border: 4px solid rgba(249, 248, 258, 0.8);
+        /* padding: 0; */
+        border: 2px solid rgba(249, 248, 258, 0.8);
         transition-duration: 300ms;
     }
 `
