@@ -146,7 +146,6 @@ const NavLogo = styled.a`
         height:100px;
         width: 100%;
         margin-right:20px;
-        margin-right: 50px;
         transition: all .5s linear 1s;
     }
     &:hover{
@@ -162,7 +161,7 @@ const NavLink = styled.div`
     margin-right: auto;
     margin-left:24px;
     letter-spacing: 4px;
-    width: 140px;
+    width: 150px;
     text-align: center;
     display: flex;
     //flex flow is a short-hand for flex-direction and flex-wrap.. the first param is for direction and the second is for wrap
@@ -208,7 +207,7 @@ const NavLink = styled.div`
                 opacity: 0;
                 bottom: -5px;
                 position: absolute;
-                transform-origin: left center;
+                transform-origin: top center;
                 transform: scaleX(0);
                 transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
                 visibility: hidden;

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ImageSlider from './ImageSlide';
 import Views from './Views';
+import Recommendations from "./Recommendations"
 
 
 
@@ -10,8 +11,9 @@ function Home() {
         <Container>
             <ImageSlider/>
             <Views/>
+            <Recommendations/>
         </Container>
-            
+              
     )
 };
 const Container = styled.main`
