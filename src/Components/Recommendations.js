@@ -1,15 +1,32 @@
 import styled from 'styled-components';
+//import Link from react router dom to avoid reload when Link Clicked
+import { Link } from 'react-router-dom';
 
 const Recomendation = () =>{
     return(
         <Container>
         <h4>Recommended for You.</h4>
           <Content>
-              <div>1</div>
-              <div>2</div>
-              <div>3</div>
-              <div>4</div>
-              
+              <Wrap>
+                  <Link to='/'>
+                      <img src={"./images/viewers-marvel.png"}/>
+                </Link>
+              </Wrap>
+              <Wrap>
+                  <Link to='/'>
+                      <img src={"./images/viewers-marvel.png"}/>
+                </Link>
+              </Wrap>
+              <Wrap>
+                  <Link to='/'>
+                      <img src={"./images/viewers-marvel.png"}/>
+                </Link>
+              </Wrap>
+              <Wrap>
+                  <Link to='/'>
+                      <img src={"./images/viewers-marvel.png"}/>
+                </Link>
+              </Wrap>
           </Content>
             
         </Container>
@@ -26,7 +43,10 @@ const Content = styled.div`
     grid-gap: 25px;
     @media (max-width: 768px){
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        grid-auto-rows: minmax(60px, auto)
+        grid-auto-rows: minmax(0, auto)
     }
+    `
+const Wrap = styled.div`
+    
     `
 export default Recomendation;
